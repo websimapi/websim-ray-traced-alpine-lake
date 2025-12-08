@@ -19,6 +19,7 @@ let loadingDiv = document.getElementById('loading');
 let samples = 0;
 
 async function init() {
+  try {
     const container = document.getElementById('canvas-container');
 
     // 1. Setup Three.js Basics
@@ -130,6 +131,11 @@ async function init() {
 
     // Handle resize
     window.addEventListener('resize', onWindowResize);
+  } catch (error) {
+    console.error(error);
+    loadingDiv.innerHTML = `Error Initializing:<br><span style="font-size:0.8rem">${error.message}</span>`;
+    loadingDiv.style.color = '#ff8888';
+  }
 }
 
 function setupAudio() {
