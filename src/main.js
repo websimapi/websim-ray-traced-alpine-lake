@@ -5,7 +5,7 @@ import { createTerrainGeometry } from './terrain.js';
 
 // Configuration
 const CONFIG = {
-    renderScale: 0.5, // Lower resolution for performance on mobile
+    renderScale: Math.min(window.devicePixelRatio > 1 ? 0.35 : 0.5, 0.5), // Optimize for high DPI
     tiles: { x: 2, y: 2 },
     bounces: 3, // Enough for simple transparency/reflection
     waterLevel: -2.0
@@ -92,13 +92,14 @@ async function init() {
 
     // 4. Setup Path Tracer
     pathTracer = new WebGLPathTracer(renderer);
-    pathTracer.setScene(scene, camera);
-
+    
     // Path Tracer Settings
     pathTracer.renderScale = CONFIG.renderScale;
     pathTracer.tiles.set(CONFIG.tiles.x, CONFIG.tiles.y);
     pathTracer.filterGlossyFactor = 0.5; // Reduce noise on glossy surfaces
-
+    
+    // Initialize scene
+    pathTracer.setScene(scene, camera);
     // We need to await the geometry build
     await pathTracer.updateGenerator();
 
