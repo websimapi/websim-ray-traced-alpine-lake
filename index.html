@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ray Traced Alpine Lake</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: sans-serif; }
+        #canvas-container { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; }
+        #loading {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; pointer-events: none;
+            text-align: center;
+            transition: opacity 0.5s;
+        }
+        #controls-hint {
+            position: absolute; bottom: 20px; left: 0; width: 100%;
+            text-align: center; color: rgba(255, 255, 255, 0.5);
+            pointer-events: none; font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://esm.sh/three@0.160.0",
+                "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/",
+                "three-mesh-bvh": "https://esm.sh/three-mesh-bvh@0.7.0",
+                "three-gpu-pathtracer": "https://esm.sh/three-gpu-pathtracer@0.0.17",
+                "simplex-noise": "https://esm.sh/simplex-noise@4.0.1",
+                "nipplejs": "https://esm.sh/nipplejs@0.10.1"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="loading">Initializing Path Tracer...<br><span style="font-size:0.8em; opacity:0.7">This may take a moment</span></div>
+    <div id="controls-hint">Drag to rotate • Pinch to zoom</div>
+    <script type="module" src="./src/main.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
