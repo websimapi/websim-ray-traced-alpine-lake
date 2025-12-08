@@ -5,7 +5,7 @@ import { createTerrainGeometry } from './terrain.js';
 
 // Configuration
 const CONFIG = {
-    renderScale: Math.min(window.devicePixelRatio > 1 ? 0.35 : 0.5, 0.5), // Optimize for high DPI
+    renderScale: Math.min(window.devicePixelRatio > 1 ? 0.25 : 0.5, 0.5), // Optimize for high DPI mobile
     tiles: { x: 2, y: 2 },
     bounces: 3, // Enough for simple transparency/reflection
     waterLevel: -2.0
@@ -49,6 +49,9 @@ async function init() {
     envMap.colorSpace = THREE.SRGBColorSpace;
     scene.environment = envMap;
     scene.background = envMap;
+    
+    // Add subtle fog for depth
+    scene.fog = new THREE.FogExp2(0xdfebff, 0.002);
 
     rockTex.wrapS = rockTex.wrapT = THREE.RepeatWrapping;
     rockTex.repeat.set(8, 8);
@@ -113,6 +116,7 @@ async function init() {
     controls.target.set(0, 5, 0);
 
     controls.addEventListener('change', () => {
+        pathTracer.updateCamera();
         pathTracer.reset(); // Reset accumulation when moving
         isInteracting = true;
     });
