@@ -45,13 +45,13 @@ async function init() {
 
     // Setup Environment
     envMap.mapping = THREE.EquirectangularReflectionMapping;
-    envMap.encoding = THREE.sRGBEncoding;
+    envMap.colorSpace = THREE.SRGBColorSpace;
     scene.environment = envMap;
     scene.background = envMap;
 
     rockTex.wrapS = rockTex.wrapT = THREE.RepeatWrapping;
     rockTex.repeat.set(8, 8);
-    rockTex.encoding = THREE.sRGBEncoding;
+    rockTex.colorSpace = THREE.SRGBColorSpace;
 
     waterNorm.wrapS = waterNorm.wrapT = THREE.RepeatWrapping;
     waterNorm.repeat.set(4, 4);
